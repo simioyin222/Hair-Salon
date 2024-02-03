@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using HairSalon.Models;
 
-namespace HairSalon.Data
+namespace HairSalon.Models
 {
     public class SalonDbContext : DbContext
     {
