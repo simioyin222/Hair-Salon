@@ -1,21 +1,22 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HairSalon.Models;
+using System.Linq;
 
-namespace HairSalon.Tests
+[TestClass]
+public class StylistTests : DbFixture
 {
-    [TestClass]
-    public class StylistTests
+    [TestMethod]
+    public void CanAddStylistToDatabase()
     {
-        [TestMethod]
-        public void StylistConstructor_CreatesInstanceOfStylist_Stylist()
-        {
-            // Arrange
-            Stylist newStylist = new Stylist();
+        // Arrange
+        var stylist = new Stylist { Name = "Test Stylist", Specialty = "Test Specialty" };
 
-            // Act
+        // Act
+        DbContext.Stylists.Add(stylist);
+        DbContext.SaveChanges();
 
-            // Assert
-            Assert.AreEqual(typeof(Stylist), newStylist.GetType());
-        }
+        // Assert
+        Assert.AreEqual(1, DbContext.Stylists.Count());
+        Assert.AreEqual("Test Stylist", DbContext.Stylists.Single().Name);
     }
 }
