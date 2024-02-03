@@ -9,8 +9,8 @@
   <p>A list of all stylists in the database.</p>
   @Html.ActionLink("Add stylist", "Create", "Stylists")
   <hr/>
-  <p>PS: All clients must be PAIRED with a stylist. If there are NO stylists, you cannot add a client.</p>
-  <p>Click link to add a stylist:</p>
+  <p>PS: All clients must be PAIRED with a QUEEN(stylist). If you do not add a stylist first you cannot add a client.</p>
+  <p>Click here to add stylist!:</p>
   @using (Html.BeginForm())
   {
     @Html.LabelFor(model => model.Name)
