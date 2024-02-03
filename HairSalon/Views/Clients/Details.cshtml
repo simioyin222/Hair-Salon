@@ -1,23 +1,14 @@
-@model HairSalon.Models.Client
-
 @{
-    ViewData["Title"] = "Client Details";
+  Layout = "_Layout";
 }
 
-<h2>@ViewData["Title"]</h2>
+@model HairSalon.Models.Client
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>Name</dt>
-        <dd>@Model.Name</dd>
-
-        <dt>Stylist</dt>
-        <dd>@Model.Stylist.Name</dd>
-    </dl>
-</div>
-
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ClientId">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@Model.ClientId">Delete</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="col py-2 col-xl-10 px-sm-2 px-0" id="main-display">
+  <h1>Client Details</h1>
+  <p>Details for the selected client.</p>
+  <p>@Html.ActionLink("Edit Client", "Edit", new {id = Model.ClientId}) | @Html.ActionLink("Delete Client", "Delete", new { id = Model.ClientId})</p>
+  <hr/>
+  <h3><strong>@Html.DisplayNameFor(model => model.Name)</strong>: @Html.DisplayFor(model => model.Name)</h3>
+  <h3><strong>@Html.DisplayNameFor(model => model.Stylist)</strong>: @Html.DisplayFor(model => model.Stylist.Name)</h3>
 </div>

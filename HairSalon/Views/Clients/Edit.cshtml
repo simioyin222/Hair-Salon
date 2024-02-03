@@ -1,27 +1,24 @@
-@model HairSalon.Models.Client
-
 @{
-    ViewData["Title"] = "Edit Client";
+  Layout = "_Layout";
 }
 
-<h2>@ViewData["Title"]</h2>
+@model HairSalon.Models.Client
 
-<form asp-action="Edit">
-    <input type="hidden" asp-for="ClientId" />
-    <div class="form-group">
-        <label asp-for="Name" class="control-label">Name</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="StylistId" class="control-label">Stylist</label>
-        <select asp-for="StylistId" class ="form-control" asp-items="ViewBag.StylistId"></select>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-</form>
+<div class="col py-2 col-xl-10 px-sm-2 px-0" id="main-display">
+  <h1>Edit Client Details</h1>
+  <p>Edit details for the selected client.</p>
+  <hr/>
+  <h4><strong>Client</strong>: @Html.DisplayFor(model => model.Name)</h4>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.ClientId)
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+
+    @Html.LabelFor(model => model.Stylist)
+    @Html.DropDownList("StylistId")
+    
+    <input type="submit" value="Save" />
+  }
 </div>

@@ -1,16 +1,17 @@
-@model HairSalon.Models.Client
-
 @{
-    ViewData["Title"] = "Delete Client";
+  Layout = "_Layout";
 }
 
-<h2>@ViewData["Title"]</h2>
+@model HairSalon.Models.Client
 
-<h3>Are you sure you want to delete @Model.Name?</h3>
-<div>
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ClientId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Cancel</a>
-    </form>
+<div class="col py-2 col-xl-10 px-sm-2 px-0" id="main-display">
+  <h1>Delete Client</h1>
+  <p>Are you sure you want to delete this client?</p>
+  <hr/>  
+
+  <h3><strong>@Html.DisplayNameFor(model => model.Name)</strong>: @Html.DisplayFor(model => model.Name)</h3>
+  @using (Html.BeginForm())
+  {
+    <input type="submit" value="Delete"/>
+  }
 </div>

@@ -1,33 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
 @model HairSalon.Models.Client
 
-@{
-    ViewData["Title"] = "Add New Client";
-}
+<div class="col py-2 col-xl-10 px-sm-2 px-0" id="main-display">
+  <h1>Add New Client</h1>
+  <p>A list of all stylists in the database.</p>
+  @Html.ActionLink("Add stylist", "Create", "Stylists")
+  <hr/>
+  <p>PS: All clients must be PAIRED with a stylist. If there are NO stylists, you cannot add a client.</p>
+  <p>Click link to add a stylist:</p>
+  @using (Html.BeginForm())
+  {
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
 
-<h2>@ViewData["Title"]</h2>
-
-@if (ViewBag.StylistId != null && ((SelectList)ViewBag.StylistId).Any())
-{
-    <form asp-action="Create">
-        <div class="form-group">
-            <label asp-for="Name" class="control-label">Name</label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="StylistId" class="control-label">Stylist</label>
-            <select asp-for="StylistId" class="form-control" asp-items="ViewBag.StylistId"></select>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>
-    </form>
-}
-else
-{
-    <p>No stylists available. Please <a asp-action="Create" asp-controller="Stylists">add a stylist</a> first.</p>
-}
-
-<div>
-    <a asp-action="Index">Back to List</a>
+    @Html.LabelFor(model => model.Stylist)
+    @Html.DropDownList("StylistId")
+    <input type="submit" value="Add new client"/>
+  }
 </div>
