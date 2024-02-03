@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@model HairSalon.Models.Stylist
+@using HairSalon.Models
+
+<div class="col py-2 col-xl-10 px-sm-2 px-0" id="main-display">
+  <h1>Stylist Details</h1>
+  <p>Details for the selected stylist.</p>
+  <p>@Html.ActionLink("Edit Stylist", "Edit", new { id = Model.StylistId}) | @Html.ActionLink("Delete Stylist", "Delete", new { id = Model.StylistId})</p>
+  <hr />
+  <h3><strong>@Html.DisplayNameFor(model => model.Name)</strong>: @Html.DisplayFor(model => model.Name)</h3>
+
+  @if (@Model.Clients.Count == 0)
+  {
+    <h5>This stylist has no clients at the moment.</h5>
+  }
+  else 
+  {
+    <h3>Clients:</h3>
+    <ul>
+      @foreach (Client entry in Model.Clients)
+      {
+        <li>@Html.ActionLink($"{entry.Name}", "Details", "Clients", new { id = entry.ClientId})</li>
+      }
+    </ul>
+  }
+</div>

@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model HairSalon.Models.Stylist
+<div class="col py-2 col-xl-10 px-sm-2 px-0" id="main-display">
+  <h1>Add New Stylist</h1>
+  <p>Complete the form to add a new stylist.</p>
+  <hr/>
+  <h4>Add a new stylist</h4>
+  @using (Html.BeginForm())
+  {
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+    <input type="submit" value="Add new stylist" />
+  }
+</div>
