@@ -1,6 +1,10 @@
 @model IEnumerable<HairSalon.Models.Client>
 
-<h2>Clients</h2>
+@{
+    ViewData["Title"] = "Registered Clients";
+}
+
+<h2>@ViewData["Title"]</h2>
 
 <p>
     <a asp-action="Create">Add New Client</a>
@@ -8,30 +12,23 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                Stylist
-            </th>
+            <th>Name</th>
+            <th>Stylist</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var client in Model)
+    {
         <tr>
+            <td>@client.Name</td>
+            <td>@client.Stylist.Name</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stylist.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@client.ClientId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@client.ClientId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@client.ClientId">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
