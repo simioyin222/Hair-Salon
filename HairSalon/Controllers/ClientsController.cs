@@ -8,89 +8,77 @@ using HairSalon.Data;
 
 namespace HairSalon.Controllers
 {
-    public class ClientsController : Controller
+  public class ClientsController : Controller
+  {
+    private readonly SalonDbContext _db;
+
+    public ClientsController(SalonDbContext db)
     {
-        private readonly SalonDbContext _db;
-
-        public ClientsController(SalonDbContext db)
-        {
-            _db = db;
-        }
-
-        public ActionResult Index()
-        {
-            List<Client> model = _db.Clients.Include(client => client.Stylist).ToList();
-            return View(model);
-        }
-
-        public ActionResult Create()
-        {
-            var stylists = _db.Stylists.ToList();
-            if (!stylists.Any())
-            {
-                ViewData["Error"] = "No stylists available. Please add a stylist first.";
-                return View(new Client());
-            }
-
-            ViewBag.StylistId = new SelectList(stylists, "StylistId", "Name");
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(Client client)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Clients.Add(client);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            
-            ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name", client.StylistId);
-            return View(client);
-        }
-
-        public ActionResult Details(int id)
-        {
-            Client thisClient = _db.Clients.Include(client => client.Stylist).FirstOrDefault(client => client.ClientId == id);
-            return View(thisClient);
-        }
-
-        public ActionResult Edit(int id)
-        {
-            var thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
-            ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name", thisClient.StylistId);
-            return View(thisClient);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Client client)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Entry(client).State = EntityState.Modified;
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name", client.StylistId);
-            return View(client);
-        }
-
-        public ActionResult Delete(int id)
-        {
-            var thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
-            return View(thisClient);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            var thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
-            _db.Clients.Remove(thisClient);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+      _db = db;
     }
+
+    public ActionResult Index()
+    {   
+      List<Client> listOfAllClients = _db.Clients
+                                         .Include(client => client.Stylist)
+                                         .ToList();
+      return View(listOfAllClients);
+    }
+
+    public ActionResult Create()
+    {    
+      ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Client entry)
+    {
+      if (entry.StylistId == 0)
+      {
+        return RedirectToAction("Create");
+      }
+      _db.Clients.Add(entry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Details(int id)
+    {    
+      Client clientToShowDetailsOn = _db.Clients
+                                        .Include(client => client.Stylist)
+                                        .FirstOrDefault(client => client.ClientId == id);
+      return View(clientToShowDetailsOn);
+    }
+
+    public ActionResult Edit(int id)
+    {            
+      Client targetClientToEdit = _db.Clients.FirstOrDefault(client => client.ClientId == id);
+      ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
+      return View(targetClientToEdit);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Client targetClient)
+    {
+      _db.Clients.Update(targetClient);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Client targetClientToDelete = _db.Clients.FirstOrDefault(client => client.ClientId == id);
+      return View(targetClientToDelete);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Client targetClient = _db.Clients.FirstOrDefault(client => client.ClientId == id);
+      _db.Clients.Remove(targetClient);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+  }
 }
