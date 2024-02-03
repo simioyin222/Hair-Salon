@@ -6,29 +6,35 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<p>
-    <a asp-action="Create">Add New Stylist</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Specialty</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var stylist in Model)
-    {
-        <tr>
-            <td>@stylist.Name</td>
-            <td>@stylist.Specialty</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@stylist.StylistId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@stylist.StylistId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@stylist.StylistId">Delete</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+<p><a asp-action="Create">Add New Stylist</a></p>
+
+@if (!Model.Any())
+{
+    <p>No stylists have been added yet.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Specialty</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var stylist in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(stylist.Name, "Details", new { id = stylist.StylistId })</td>
+                <td>@stylist.Specialty</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@stylist.StylistId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@stylist.StylistId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@stylist.StylistId">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

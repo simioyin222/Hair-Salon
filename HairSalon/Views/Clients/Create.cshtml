@@ -6,20 +6,27 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<form asp-action="Create">
-    <div class="form-group">
-        <label asp-for="Name" class="control-label">Name</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="StylistId" class="control-label">Stylist</label>
-        <select asp-for="StylistId" class="form-control" asp-items="ViewBag.StylistId"></select>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-</form>
+@if (ViewBag.StylistId != null && ((SelectList)ViewBag.StylistId).Any())
+{
+    <form asp-action="Create">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="StylistId" class="control-label">Stylist</label>
+            <select asp-for="StylistId" class="form-control" asp-items="ViewBag.StylistId"></select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+}
+else
+{
+    <p>No stylists available. Please <a asp-action="Create" asp-controller="Stylists">add a stylist</a> first.</p>
+}
 
 <div>
     <a asp-action="Index">Back to List</a>
