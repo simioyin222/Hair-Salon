@@ -1,10 +1,10 @@
-/* Custom body style */
+
 body {
-  background-color: #f0f0f0;
+  background-color: #17e2b6;
   font-family: 'Arial', sans-serif;
 }
 
-/* Header styling */
+
 .header {
   background-color: #333;
   color: #fff;
@@ -12,7 +12,7 @@ body {
   text-align: center;
 }
 
-/* Navigation bar styling */
+
 .navbar {
   background-color: #555;
   overflow: auto;
@@ -27,13 +27,13 @@ body {
   font-size: 17px;
 }
 
-/* Styling for links */
+
 a:hover {
-  background-color: #ddd;
+  background-color: #c61010;
   color: black;
 }
 
-/* Footer styling */
+
 .footer {
   background-color: #333;
   color: white;
