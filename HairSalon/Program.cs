@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using HairSalon.Data;
 using HairSalon.Models;
 using Microsoft.AspNetCore.Identity;
+using HairSalon.ViewModels; // Add this line if your ViewModels are in a separate namespace
 
 namespace HairSalon
 {
@@ -23,13 +24,17 @@ namespace HairSalon
           )
       );
 
-      builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<SalonDbContext>();
+      // Replace AddDefaultIdentity with the following lines
+      builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+          .AddEntityFrameworkStores<SalonDbContext>()
+          .AddDefaultTokenProviders();
 
+      builder.Services.ConfigureApplicationCookie(options => {
+          options.LoginPath = "/Accounts/Login";
+          options.LogoutPath = "/Accounts/LogOff";
+      });
 
       WebApplication app = builder.Build();
-
-
 
       app.UseHttpsRedirection();
       app.UseStaticFiles();
