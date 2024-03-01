@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using HairSalon.Data;
+using Microsoft.AspNetCore.Authorization;
+
 
 
 namespace HairSalon.Controllers
@@ -17,7 +19,8 @@ namespace HairSalon.Controllers
     {
       _db = db;
     }
-
+    
+    [AllowAnonymous]
     public ActionResult Index()
     {   
       List<Client> listOfAllClients = _db.Clients
@@ -26,12 +29,14 @@ namespace HairSalon.Controllers
       return View(listOfAllClients);
     }
 
+    [Authorize]
     public ActionResult Create()
     {    
       ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
       return View();
     }
-
+    
+    [Authorize]
     [HttpPost]
     public ActionResult Create(Client entry)
     {
@@ -43,7 +48,8 @@ namespace HairSalon.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
+    
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {    
       Client clientToShowDetailsOn = _db.Clients
@@ -51,14 +57,16 @@ namespace HairSalon.Controllers
                                         .FirstOrDefault(client => client.ClientId == id);
       return View(clientToShowDetailsOn);
     }
-
+    
+    [Authorize]
     public ActionResult Edit(int id)
     {            
       Client targetClientToEdit = _db.Clients.FirstOrDefault(client => client.ClientId == id);
       ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
       return View(targetClientToEdit);
     }
-
+    
+    [Authorize]
     [HttpPost]
     public ActionResult Edit(Client targetClient)
     {
@@ -66,13 +74,15 @@ namespace HairSalon.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
+    
+    [Authorize]
     public ActionResult Delete(int id)
     {
       Client targetClientToDelete = _db.Clients.FirstOrDefault(client => client.ClientId == id);
       return View(targetClientToDelete);
     }
-
+    
+    [Authorize]
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {

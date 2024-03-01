@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using HairSalon.Data;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace HairSalon.Controllers
 {
@@ -15,18 +17,21 @@ namespace HairSalon.Controllers
     {
       _db = db;
     }
-
+    
+    [AllowAnonymous]
     public ActionResult Index()
     { 
       List<Stylist> listOfStylists = _db.Stylists.ToList();
       return View(listOfStylists);
     }
 
+    [Authorize]
     public ActionResult Create()
     {                 
       return View();
     }
-
+    
+    [Authorize]
     [HttpPost]
     public ActionResult Create(Stylist entry)
     {
@@ -34,7 +39,8 @@ namespace HairSalon.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
+    
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {               
       Stylist targetStylist = _db.Stylists
@@ -43,13 +49,15 @@ namespace HairSalon.Controllers
       return View(targetStylist);
     }
 
+    [Authorize]
     public ActionResult Edit(int id)
     {                 
       Stylist targetStylist = _db.Stylists
                                   .FirstOrDefault(stylist => stylist.StylistId == id);
       return View(targetStylist);
     }
-
+    
+    [Authorize]
     [HttpPost]
     public ActionResult Edit(Stylist editedEntry)
     {
@@ -57,13 +65,15 @@ namespace HairSalon.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
+    
+    [Authorize]
     public ActionResult Delete(int id)
     {               
       Stylist targetStylist = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
       return View(targetStylist);
     }
 
+    [Authorize]
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {

@@ -4,6 +4,8 @@ using HairSalon.Models;
 using HairSalon.ViewModels;
 using System.Threading.Tasks;
 using HairSalon.Data;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace HairSalon.Controllers
 {
@@ -20,13 +22,13 @@ namespace HairSalon.Controllers
             _db = db;
         }
 
-        public IActionResult Register()
+        public ActionResult Register()
 {
     return View();
 }
 
 [HttpPost]
-public async Task<IActionResult> Register(RegisterViewModel model)
+public async Task<ActionResult> Register(RegisterViewModel model)
 {
     if (ModelState.IsValid)
     {
@@ -46,7 +48,7 @@ public async Task<IActionResult> Register(RegisterViewModel model)
 }
 
 // Login Method
-public IActionResult Login(string returnUrl = null)
+public ActionResult Login(string returnUrl = null)
 {
     ViewData["ReturnUrl"] = returnUrl;
     return View();
@@ -54,7 +56,7 @@ public IActionResult Login(string returnUrl = null)
 
 [HttpPost]
 [ValidateAntiForgeryToken]
-public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+public async Task<ActionResult> Login(LoginViewModel model, string returnUrl = null)
 {
     ViewData["ReturnUrl"] = returnUrl;
     if (ModelState.IsValid)
@@ -76,7 +78,7 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 // LogOff Method
 [HttpPost]
 [ValidateAntiForgeryToken]
-public async Task<IActionResult> LogOff()
+public async Task<ActionResult> LogOff()
 {
     await _signInManager.SignOutAsync();
     return RedirectToAction(nameof(HomeController.Index), "Home");

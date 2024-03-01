@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HairSalon.Migrations
 {
     [DbContext(typeof(SalonDbContext))]
-    [Migration("20240301070130_AddIdentity")]
+    [Migration("20240301072914_AddIdentity")]
     partial class AddIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
