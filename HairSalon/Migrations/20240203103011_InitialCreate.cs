@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using HairSalon.Data;
 
 #nullable disable
 

@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using HairSalon.Data;
 using HairSalon.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace HairSalon
 {
@@ -21,11 +23,20 @@ namespace HairSalon
           )
       );
 
+      builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<SalonDbContext>();
+
+
       WebApplication app = builder.Build();
+
+
 
       app.UseHttpsRedirection();
       app.UseStaticFiles();
       app.UseRouting();
+
+      app.UseAuthentication(); 
+      app.UseAuthorization();
 
       app.MapControllerRoute(
         name: "default",
