@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using HairSalon.Data;
 using HairSalon.Models;
 using Microsoft.AspNetCore.Identity;
-using HairSalon.ViewModels; // Add this line if your ViewModels are in a separate namespace
+using HairSalon.ViewModels;
 
 namespace HairSalon
 {

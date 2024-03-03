@@ -9,79 +9,94 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HairSalon.Controllers
 {
-    public class AccountsController : Controller
+    public class AccountController : Controller
+  {
+    private readonly SalonDbContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
+
+    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, SalonDbContext db)
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly SalonDbContext _db;
-
-        public AccountsController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, SalonDbContext db)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _db = db;
-        }
-
-        public ActionResult Register()
-{
-    return View();
-}
-
-[HttpPost]
-public async Task<ActionResult> Register(RegisterViewModel model)
-{
-    if (ModelState.IsValid)
-    {
-        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-        var result = await _userManager.CreateAsync(user, model.Password);
-        if (result.Succeeded)
-        {
-            await _signInManager.SignInAsync(user, isPersistent: false);
-            return RedirectToAction("Index", "Home");
-        }
-        foreach (var error in result.Errors)
-        {
-            ModelState.AddModelError(string.Empty, error.Description);
-        }
+      _userManager = userManager;
+      _signInManager = signInManager;
+      _db = db;
     }
-    return View(model);
-}
 
-// Login Method
-public ActionResult Login(string returnUrl = null)
-{
-    ViewData["ReturnUrl"] = returnUrl;
-    return View();
-}
-
-[HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<ActionResult> Login(LoginViewModel model, string returnUrl = null)
-{
-    ViewData["ReturnUrl"] = returnUrl;
-    if (ModelState.IsValid)
+    public ActionResult Index()
     {
-        var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+      ViewBag.Title = "Authentication with Identity";
+      return View();
+    }
+
+    public IActionResult Register()
+    {
+      ViewBag.Title = "Register a new user";
+      return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Register (RegisterViewModel model)
+    {
+      if (!ModelState.IsValid)
+      {
+        ViewBag.Title = "Register a new user";
+        return View(model);
+      }
+      else
+      {
+        ApplicationUser user = new ApplicationUser { UserName = model.Email };
+        IdentityResult result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
-            return RedirectToAction("Index", "Home");
+          return RedirectToAction("Index");
         }
         else
         {
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return View(model);
+          ViewBag.Title = "Register a new user";
+          foreach (IdentityError error in result.Errors)
+          {
+            ModelState.AddModelError("", error.Description);
+          }
+          return View(model);
         }
+      }
     }
-    return View(model);
-}
 
-// LogOff Method
-[HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<ActionResult> LogOff()
-{
-    await _signInManager.SignOutAsync();
-    return RedirectToAction(nameof(HomeController.Index), "Home");
-}
+    public ActionResult Login()
+    {
+      ViewBag.Title = "Log in with your account";
+      return View();
     }
+
+    [HttpPost]
+    public async Task<ActionResult> Login(LoginViewModel model)
+    {
+      if (!ModelState.IsValid)
+      {
+        ViewBag.Title = "Log in with your account";
+        return View(model);
+      }
+      else
+      {
+        Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+        if (result.Succeeded)
+        {
+          return RedirectToAction("Index");
+        }
+        else
+        {
+          ViewBag.Title = "Log in with your account";
+          ModelState.AddModelError("", "There is something wrong with your email or username. Please try again.");
+          return View(model);
+        }
+      }
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> LogOff()
+    {
+      await _signInManager.SignOutAsync();
+      return RedirectToAction("Index");
+    }
+  }
 }

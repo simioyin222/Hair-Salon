@@ -1,23 +1,27 @@
 @model HairSalon.ViewModels.LoginViewModel
+@using HairSalon.ViewModels
+
 
 @{
     Layout = "_Layout";
 }
 
-<h2>Login</h2>
-<form asp-action="Login">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Email" class="control-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Password" class="control-label"></label>
-        <input asp-for="Password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Login" class="btn btn-primary" />
-    </div>
-</form>
+<div class="main-display">
+  @if(!ViewData.ModelState.IsValid) 
+  {
+    @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:",  new { @class = "text-danger", @style = "font-weight: 600;"}) 
+  }
+
+  @using (Html.BeginForm())
+  {
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email)
+
+    @Html.LabelFor(m => m.Password)
+    @Html.EditorFor(m => m.Password)
+
+    <input type="submit" value="Log in" />
+  }
+</div>
+<p>@Html.ActionLink("Register for an account", "Register")</p>
+<p>@Html.ActionLink("Back to accounts page", "Index")</p>
