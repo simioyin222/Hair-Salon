@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using HairSalon.Data;
 
 namespace HairSalon.ViewModels
 {

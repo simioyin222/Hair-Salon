@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using HairSalon.Models;
+using HairSalon.Data;
 
 namespace HairSalon.Data
 {
