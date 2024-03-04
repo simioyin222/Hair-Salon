@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HairSalon.Controllers
 {
-    public class AccountController : Controller
+    public class AccountsController : Controller
   {
     private readonly SalonDbContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, SalonDbContext db)
+    public AccountsController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, SalonDbContext db)
     {
       _userManager = userManager;
       _signInManager = signInManager;
