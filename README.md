@@ -15,7 +15,7 @@
 - Entity Framework Core
 
 ### Description
-Eau Claire's Salon is a C# web application designed to help Claire, the salon owner, manage her stylists and their clients effectively. Upon landing on the splash page, users are greeted with "Welcome to Eau Claire's Salon!" and can navigate through the application to view, add, edit, or delete stylists and clients. Note that clients can only be added after a stylist has been added, as they must be associated with an existing stylist. The application leverages technologies such as ASP.NET Core MVC for web functionality, Entity Framework Core for database operations, and Bootstrap for styling.
+Eau Claire's Salon is a C# web application designed to help Claire, the salon owner, manage her stylists and their clients effectively. Upon landing on the splash page, users are greeted with "Welcome to Eau Claire's Salon!" and can navigate through the application to view anything, but must be registred and logged in to perform any CRUD functionalities(create, read, update, and delete) with  stylists and clients. Note that clients can only be added after a stylist has been added, as they must be associated with an existing stylist. The application leverages technologies such as ASP.NET Core MVC for web functionality, Entity Framework Core for database operations, and Bootstrap for styling. Utilizes a many-to-many relationship between the two classes -- stylists and clients. Data annotations and conditionals are in place to validate user input. User authentication and autherization are in place for personalized features. 
 
 ### Setup/Installation Requirements
 
@@ -38,7 +38,7 @@ Eau Claire's Salon is a C# web application designed to help Claire, the salon ow
 
 #### Database Setup
 1. Open MySQL Workbench and navigate to Navigator > Administration window > Data Import/Restore.
-2. Choose 'Import from Self-Contained File' and select the `jonathan_cheng.sql` file located in the project's root directory.
+2. Choose 'Import from Self-Contained File' and select the `cemy_oyin.sql` file located in the project's root directory.
 3. In 'Default Schema to be Imported To', click the 'New' button and specify the database name as `cemy_oyin` (or another name, adjusting `appsettings.json` accordingly).
 4. Go to the 'Import Progress' tab and start the import by clicking 'Start Import'.
 
