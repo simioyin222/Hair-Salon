@@ -55,3 +55,36 @@ button:hover, a:hover {
 .nav-link {
   padding: 0 15px; /* Adjust the horizontal padding as needed */
 }
+
+body {
+  background-image: url('1cfcf6c0af4f10209f1f95622a32b24d.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #333;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+/* If text legibility is an issue, consider adding a semi-transparent overlay or background to text sections */
+.text-section {
+  background-color: rgba(255, 255, 255, 0.8); /* white background with opacity */
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.hero-section {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.hero-text {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); /* dark overlay for legibility */
+  padding: 20px;
+}
+
+.move-up {
+  margin-top: -149px; /* Adjust the value based on how much you want to move it up */
+}
