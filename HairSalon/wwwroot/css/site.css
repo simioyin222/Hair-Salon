@@ -1,14 +1,17 @@
 :root {
-  --primary-color: #5b88bd; /* New primary color */
-  --secondary-color: #f4f4f8; /* New secondary color */
-  --accent-color: #e1a07a; /* New accent color */
-  --text-color: #333; /* Darker text for better readability */
+  --primary-color: #5b88bd;
+  --secondary-color: #f4f4f8;
+  --accent-color: #e1a07a;
+  --text-color: #333;
 }
 
 body {
-  background-color: var(--secondary-color);
+  background-image: url('1cfcf6c0af4f10209f1f95622a32b24d.jpg');
+  background-size: cover;
+  background-position: center;
   color: var(--text-color);
   font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-weight: bold !important; /* Ensures all text in body is bold */
 }
 
 .header {
@@ -61,12 +64,12 @@ body {
   background-size: cover;
   background-position: center;
   color: #333;
-  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
 }
 
 /* If text legibility is an issue, consider adding a semi-transparent overlay or background to text sections */
 .text-section {
-  background-color: rgba(255, 255, 255, 0.8); /* white background with opacity */
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 15px;
   margin-top: 20px;
 }
@@ -81,10 +84,11 @@ body {
 
 .hero-text {
   text-align: center;
-  background: rgba(0, 0, 0, 0.5); /* dark overlay for legibility */
+  background: rgba(0, 0, 0, 0.5);
   padding: 20px;
 }
 
 .move-up {
-  margin-top: -149px; /* Adjust the value based on how much you want to move it up */
+  margin-top: -149px;
 }
+
