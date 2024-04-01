@@ -1,19 +1,47 @@
 ﻿<!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="utf-8">
     <title>Eau Claire's Salon</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
-  </head>
-  <body>
-    <div class="container">
-      @await Html.PartialAsync("Header")
-      <div class="container-fluid">
-        <div class="row flex-nowrap">
-          @await Html.PartialAsync("LinkBar")
-          @RenderBody()       
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="text-white">Eau Claire's Salon</h1>
         </div>
-      </div>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("View all clients", "Index", "Clients", new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("See all stylists", "Index", "Stylists", new { @class = "nav-link" })
+                    </li>
+                    <!-- Include other navigation links -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        @RenderBody()
     </div>
-  </body>
+    <footer class="footer bg-dark text-white text-center">
+        <p class="mb-0">© 2024 Eau Claire's Salon</p>
+    </footer>
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
 </html>

@@ -1,45 +1,57 @@
+:root {
+  --primary-color: #5b88bd; /* New primary color */
+  --secondary-color: #f4f4f8; /* New secondary color */
+  --accent-color: #e1a07a; /* New accent color */
+  --text-color: #333; /* Darker text for better readability */
+}
 
 body {
-  background-color: #17e2b6;
-  font-family: 'Arial', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
-
 
 .header {
-  background-color: #333;
+  background-color: var(--primary-color);
   color: #fff;
-  padding: 10px 0;
-  text-align: center;
 }
 
-
 .navbar {
-  background-color: #555;
-  overflow: auto;
+  background-color: var(--primary-color);
 }
 
 .navbar a {
-  float: left;
-  text-align: center;
-  padding: 12px;
   color: white;
-  text-decoration: none;
-  font-size: 17px;
 }
-
 
 a:hover {
-  background-color: #c61010;
-  color: black;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
 }
 
-
 .footer {
-  background-color: #333;
+  background-color: var(--primary-color);
   color: white;
-  text-align: center;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+}
+
+button, a {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover, a:hover {
+  filter: brightness(120%);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column;
+  }
+}
+
+.nav-item {
+  margin-right: 20px; /* Adjust the value as needed */
+}
+
+.nav-link {
+  padding: 0 15px; /* Adjust the horizontal padding as needed */
 }
