@@ -5,14 +5,14 @@
 @using HairSalon.Models;
 
 <div class="col py-2 col-xl-10 px-sm-2 px-0" id="main-display">
-  <h1>Registered Stylists</h1>
-  <p>A list of all stylists in the database.</p>
+  <h1 class=".white-text">Registered Stylists</h1>
+  <p class=".white-text">A list of all stylists in the database.</p>
   <p>@Html.ActionLink("Add a stylist", "Create") | @Html.ActionLink("Add a client", "Create", "Clients")</p>
   <hr/>
   
   @if (@Model.Count == 0)
   {
-    <h3>No stylists have been added</h3>
+    <h3 class=".white-text">No stylists have been added</h3>
   } 
 
   <ul>

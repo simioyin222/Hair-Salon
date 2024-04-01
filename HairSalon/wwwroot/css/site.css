@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url('1cfcf6c0af4f10209f1f95622a32b24d.jpg');
+  background-image: url('616a401cfd5c4dd76c1a65987fd568c3_t.jpeg');
   background-size: cover;
   background-position: center;
   color: var(--text-color);
@@ -60,7 +60,7 @@ button:hover, a:hover {
 }
 
 body {
-  background-image: url('1cfcf6c0af4f10209f1f95622a32b24d.jpg');
+  background-image: url('616a401cfd5c4dd76c1a65987fd568c3_t.jpeg');
   background-size: cover;
   background-position: center;
   color: #333;
@@ -92,3 +92,6 @@ body {
   margin-top: -149px;
 }
 
+.white-text {
+  color: #000000 !important;
+}
