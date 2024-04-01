@@ -2,11 +2,11 @@
   --primary-color: #5b88bd;
   --secondary-color: #f4f4f8;
   --accent-color: #e1a07a;
-  --text-color: #333;
+  --text-color: black;
 }
 
 body {
-  background-image: url('616a401cfd5c4dd76c1a65987fd568c3_t.jpeg');
+  background-image: url('1cfcf6c0af4f10209f1f95622a32b24d.jpg');
   background-size: cover;
   background-position: center;
   color: var(--text-color);
@@ -60,7 +60,7 @@ button:hover, a:hover {
 }
 
 body {
-  background-image: url('616a401cfd5c4dd76c1a65987fd568c3_t.jpeg');
+  background-image: url('1cfcf6c0af4f10209f1f95622a32b24d.jpg');
   background-size: cover;
   background-position: center;
   color: #333;
@@ -93,5 +93,5 @@ body {
 }
 
 .white-text {
-  color: #000000 !important;
+  color: black !important;
 }

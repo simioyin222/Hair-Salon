@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-<div class="hero-section" style="background-image: url('../../wwwroot/css/616a401cfd5c4dd76c1a65987fd568c3_t.jpeg');">
+<div class="hero-section" style="background-image: url('../../wwwroot/css/1cfcf6c0af4f10209f1f95622a32b24d.jpg');">
     <div class="hero-text">
         <h1>Welcome to Your Personal Hair Salon</h1>
         <p>Discover your new look with us today!</p>
@@ -11,8 +11,6 @@
 </div>
 
 <div class="col py-2 col-xl-10 px-sm-2 px-0 move-up" id="main-display">
-  <h1 class=".white-text">Welcome Customer! Your personal busniess to managing all your stylists and their clients!</h1>
-
    @if (User.Identity.IsAuthenticated)
   {
     <p>Hello @User.Identity.Name!</p>
@@ -23,8 +21,8 @@
   }
   else
   {
-    <p>@Html.ActionLink("Register", "Register", "Accounts")</p>
-    <p>@Html.ActionLink("Log in", "Login", "Accounts")</p>
+    <h1><p>@Html.ActionLink("Register", "Register", "Accounts")</p>
+    <p>@Html.ActionLink("Log in", "Login", "Accounts")</p></h1>
   }
   
 </div>
