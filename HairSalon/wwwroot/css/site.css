@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url('1cfcf6c0af4f10209f1f95622a32b24d.jpg');
+  background-image: url('cc98f3ddfe795765b201a034d36b49df.jpg');
   background-size: cover;
   background-position: center;
   color: var(--text-color);
@@ -17,6 +17,7 @@ body {
 .header {
   background-color: var(--primary-color);
   color: #fff;
+  text-align: center; 
 }
 
 .navbar {
@@ -60,7 +61,7 @@ button:hover, a:hover {
 }
 
 body {
-  background-image: url('1cfcf6c0af4f10209f1f95622a32b24d.jpg');
+  background-image: url('cc98f3ddfe795765b201a034d36b49df.jpg');
   background-size: cover;
   background-position: center;
   color: #333;
